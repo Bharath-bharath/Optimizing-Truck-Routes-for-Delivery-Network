@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='driver_dashboard.css') }}">
+</head>
+<body>
+    <div class="sticky-top">
+        <h1>Fleet Management&#x1F69A;</h1>
+        <nav>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('owner_page') }}">Find Route</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('view_delivery_points') }}">View Delivery Points</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('add_delivery_points') }}">Add Delivery Points</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('driver_dashboard') }}">Driver Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('history') }}">History</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('about_us') }}">About Us&#127758</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="container">
+        <h2>Driver Details</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Driver Id</th>
+                    <th>Driver Name</th>
+                    <th>Location</th>
+                    <th>Mobile Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for driver in drivers %}
+                <tr>
+                    <td>{{ driver.driver_id }}</td>
+                    <td>{{ driver.driver_name }}</td>
+                    <td>{{ driver.location }}</td>
+                    <td>{{ driver.mobile_no }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container">
+        <h2>Add Driver</h2>
+        <form action="{{ url_for('add_driver') }}" method="post">
+            <div class="form-group">
+                <label for="driver_id">Driver Id</label>
+                <input type="text" id="driver_id" name="driver_id" required>
+            </div>
+            <div class="form-group">
+                <label for="driver_name">Driver Name</label>
+                <input type="text" id="driver_name" name="driver_name" required>
+            </div>
+            <div class="form-group">
+                <label for="location">Location</label>
+                <input type="text" id="location" name="location">
+            </div>
+            <div class="form-group">
+                <label for="latitude">Latitude</label>
+                <input type="text" id="latitude" name="latitude">
+            </div>
+            <div class="form-group">
+                <label for="longitude">Longitude</label>
+                <input type="text" id="longitude" name="longitude">
+            </div>
+            <div class="form-group">
+                <label for="mobile_no">Mobile Number</label>
+                <input type="text" id="mobile_no" name="mobile_no" required>
+            </div>
+            <button type="submit" class="add-btn">Add Driver</button>
+        </form>
+    </div>
+
+    <div class="container">
+        <h2>Delete Driver</h2>
+        <form action="{{ url_for('delete_driver') }}" method="post">
+            <div class="form-group">
+                <label for="driver_id">Driver Id</label>
+                <input type="text" id="driver_id" name="driver_id" required>
+            </div>
+            <div class="form-group">
+                <label for="driver_name">Driver Name</label>
+                <input type="text" id="driver_name" name="driver_name" required>
+            </div>
+            <button type="submit" class="del-btn">Delete Driver</button>
+        </form>
+    </div>
+
+</body>
+</html>

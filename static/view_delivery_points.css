@@ -1,0 +1,164 @@
+ /* .sticky-top {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: navy;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    height: 80px;
+}
+
+.sticky-top h1 {
+    margin: 0;
+    color: white;
+    font-weight: bold;
+}
+
+.nav {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    margin-left: 20px;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.nav-link:hover {
+    color: gray;
+}
+
+.container {
+    margin: 20px;
+}
+
+h2 {
+    text-align: center;
+    color: black;
+    font-size: 35px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+}
+
+th, td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: navy;
+    color: white;
+}
+
+tbody tr:nth-child(even) {
+    background-color: lightgrey;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+tbody tr:hover {
+    background-color: navy;
+    color: white;
+} */
+
+
+.sticky-top {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: navy;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    height: 80px;
+}
+
+.sticky-top h1 {
+    margin: 0;
+    color: white;
+    font-weight: bold;
+}
+
+.nav {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    margin-left: 20px;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.nav-link:hover {
+    color: gray;
+}
+
+.container {
+    margin: 20px;
+}
+
+h2 {
+    text-align: center;
+    color: black;
+    font-size: 35px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+}
+
+th, td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: navy;
+    color: white;
+}
+
+tbody tr:nth-child(even) {
+    background-color: lightgrey;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+tbody tr:hover {
+    background-color: navy;
+    color: white;
+}

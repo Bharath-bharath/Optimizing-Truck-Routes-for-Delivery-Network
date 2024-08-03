@@ -1,0 +1,166 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Route Planner</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='owner_page.css') }}">
+</head>
+<body>
+    <div class="sticky-top">
+        <h1>Fleet Management&#x1F69A;</h1>
+        <nav>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('owner_page') }}">Find Route</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('view_delivery_points') }}">View Delivery Points</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('add_delivery_points') }}">Add Delivery Points</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('driver_dashboard') }}">Driver Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('history') }}">History</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('about_us') }}">About Us&#127758;</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <form id="locationForm" method="POST" action="/submit_locations">
+        <div class="input-container" id="inputContainer"></div>
+        <div class="buttons-container">
+            <div class="slideshow-container">
+                <img src="{{ url_for('static', filename='bg6.jpg') }}" class="slide">
+                <img src="{{ url_for('static', filename='best_bg.jpeg') }}" class="slide">
+                <img src="{{ url_for('static', filename='indx.jpg') }}" class="slide">
+            </div>
+
+            <div class="content-section">
+                <div class="content-left">
+                    <h2>OpenRouteService API</h2>
+                    <p>Provides various geospatial functionalities such as route planning, geocoding, and isochrones based on OSM (OpenStreetMap) data.</p>
+                </div>
+                <div class="content-right">
+                    <img src="{{ url_for('static', filename='api.jpg') }}" alt="API Image">
+                </div>
+            </div>
+
+            <div class="content-section">
+                <div class="content-left">
+                    <img src="{{ url_for('static', filename='globe.jpg') }}" alt="Globe Image">
+                </div>
+                <div class="content-right">
+                    <h2>Haversine Formula</h2>
+                    <p>Calculate the great-circle distance between two points on the Earth’s surface given their latitude and longitude.</p>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <div class="content-left">
+                    <h2>Dijkstra’s & A-Star Algorithm</h2>
+                    <p>OpenSourceRoute API by default uses this algorithm for shortest pathfinding and graph traversal,A-star which is an extension of Dijkstra’s algorithm with heuristics to improve performance.</p>
+                </div>
+                <div class="content-right">
+                    <img src="{{ url_for('static', filename='bigdata.jpg') }}" alt="Big Data Image">
+                </div>
+            </div>
+
+            <div class="content-section">
+                <div class="content-left">
+                    <img src="{{ url_for('static', filename='driver_assign.jpg') }}" alt="Globe Image">
+                </div>
+                <div class="content-right">
+                    <h2>Nearest Neighbour Algorithm</h2>
+                    <p> The Nearest Neighbor Algorithm iterates through available drivers, calculating distances to the starting point using the Haversine Formula. It selects the driver with the shortest distance as the nearest one.</p>.</p>
+                </div>
+            </div>
+
+            <button type="button" class="calculate-button" onclick="calculateRoute()">Calculate Route</button>
+        </div>
+    </form>
+
+    <div id="routeDetailsContainer" class="route-text"></div>
+    <div id="routeImageContainer" class="route-img"></div>
+
+    <div id="findNearestDriversContainer">
+        <h2 class="dvr-txt">Find Nearest Drivers</h2>
+        <button onclick="findNearestDrivers()" class="dvr-btn">Find</button>
+    </div>
+    
+    <div id="nearestDriversContainer"></div>
+
+    <script>
+        function calculateRoute() {
+            fetch('/calculate', {
+                method: 'POST'
+            }).then(response => response.json()).then(data => {
+                if ('error' in data) {
+                    alert(data['error']);
+                } else {
+                    const routeImageContainer = document.getElementById('routeImageContainer');
+                    const routeDetailsContainer = document.getElementById('routeDetailsContainer');
+
+                    routeImageContainer.innerHTML = `<img src="${data['plot_path']}" alt="Route Plot">`;
+
+                    let orderHtml = '<h2>Order of Delivery Locations:</h2><div class="timeline">';
+                    data['order_of_locations'].forEach((location, index) => {
+                        orderHtml += `
+                            <div class="timeline-item">
+                                <div class="timeline-index">Point ${index + 1}</div>
+                                <div class="timeline-content">${location}</div>
+                            </div>`;
+                    });
+                    orderHtml += '</div>';
+
+                    let distancesHtml = '<h2>Distances Between Locations:</h2><table><tr><th>Location Pair</th><th>Distance</th></tr>';
+                    data['distances'].forEach(distance => {
+                        distancesHtml += `<tr><td>${distance.location_pair}</td><td>${distance.distance}</td></tr>`;
+                    });
+                    distancesHtml += '</table>';
+
+                    routeDetailsContainer.innerHTML = orderHtml + distancesHtml;
+                }
+            }).catch(error => {
+                console.error('Error:', error);
+                alert('Failed to calculate route.');
+            });
+        }
+    
+    function findNearestDrivers() {
+    fetch('/find_nearest_drivers')
+        .then(response => response.json())
+        .then(data => {
+            if ('error' in data) {
+                alert(data['error']);
+            } else {
+                const nearestDriversContainer = document.getElementById('nearestDriversContainer');
+                nearestDriversContainer.innerHTML = '';
+                data['nearest_drivers'].forEach(driver => {
+                    nearestDriversContainer.innerHTML += `
+                        <div class="driver-card">
+                            <h1>Driver ID: ${driver.driver_id}</h1>
+                            <h2> ${driver.driver_name}</h2>
+                            <p>Location: ${driver.location}</p>
+                            <p>Mobile No: ${driver.mobile_no}</p>
+                            
+                        </div>`;
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Failed to find nearest drivers.');
+        });
+}
+
+    </script>
+</body>
+</html>
+

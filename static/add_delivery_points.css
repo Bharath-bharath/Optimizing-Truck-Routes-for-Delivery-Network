@@ -1,0 +1,145 @@
+.sticky-top {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: navy;
+    padding: 10px 20px;
+    display: flex;
+    margin-bottom: 10px;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+
+.sticky-top h1 {
+    margin: 0;
+    color: white;
+    font-weight: bold;
+}
+
+.nav {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    margin-left: 20px;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.nav-link:hover {
+    color: lightgray;
+}
+
+
+.input-container {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    margin-bottom: 20px;
+    background-image: url("/static/fix.jpg");
+    background-size: cover; 
+    background-position: center; 
+}
+
+
+.input-block {
+    margin-left: 450px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-right: 35%;
+    align-items: center;
+    width: 600px;
+    min-width: 600px;
+    height: 400px;
+    padding: 20px;
+    margin-right: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-image: url("your_glacier_background_image.jpg");
+    background-size: cover;
+    background-position: center;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
+}
+
+
+.inp-items {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.add-button, .submit-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-button {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.add-button:hover {
+    background-color: #0056b3;
+}
+
+.submit-button {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.submit-button:hover {
+    background-color: #218838;
+}
+
+.delete-heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.delete-input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 18px;
+    outline: none;
+}
+
+.delete-button {
+    padding: 12px 24px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    background-color: #ff6347;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+    background-color: #d43f21; 
+}
+

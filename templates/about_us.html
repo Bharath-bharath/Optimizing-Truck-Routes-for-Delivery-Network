@@ -1,0 +1,58 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='about_us.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="sticky-top">
+        <h1>Fleet Management&#x1F69A;</h1>
+        <nav>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('owner_page') }}">Find Route</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('view_delivery_points') }}">View Delivery Points</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('add_delivery_points') }}">Add Delivery Points</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('driver_dashboard') }}">Driver Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('history') }}">History</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('about_us') }}">About Us&#127758;</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="container">
+        <h2>About Us</h2>
+        <div class="about-content">
+            <p>
+                Every day, numerous truck drivers, owners, and logistics firms work tirelessly to ensure the seamless operation of our communities. Fleetx relentlessly endeavors to enhance the safety and efficiency of this vital labor, offering benefits to organizations overseeing intricate operations and the individuals propelling them forward.
+            </p>
+            <div class="logos">
+                <i class="fas fa-truck fa-3x"></i>
+                <i class="fas fa-warehouse fa-3x"></i>
+                <i class="fas fa-shipping-fast fa-3x"></i>
+            </div>
+        </div>
+        <div class="contact-info">
+            <p><i class="fas fa-envelope"></i> Email: <a href="mailto:fleetmanagement@gmail.com">fleetmanagement@gmail.com</a></p>
+            <p><i class="fas fa-phone"></i> Phone: <a href="tel:+919999999999">+91-9999999999</a></p>
+            <p>
+                <i class="fab fa-instagram"></i> Instagram: <a href="https://www.instagram.com/fleetmanagement" target="_blank">@fleetmanagement</a><br>
+                <i class="fab fa-linkedin"></i> LinkedIn: <a href="https://www.linkedin.com/company/fleetmanagement" target="_blank">Fleet Management</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

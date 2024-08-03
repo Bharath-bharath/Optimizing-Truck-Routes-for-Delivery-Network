@@ -1,0 +1,206 @@
+<!-- 
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Location</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='add_delivery_points.css') }}">
+</head>
+<body>
+    <div class="sticky-top">
+        <h1>Fleet Management&#x1F69A;</h1>
+        <nav>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('owner_page') }}">Find Route</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('view_delivery_points') }}">View Delivery Points</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('add_delivery_points') }}">Add Delivery Points</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('about_us') }}">About Us&#127758;</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <form id="locationForm" method="POST" action="/delete_location">
+        <div class="input-container" id="inputContainer"></div>
+        <div class="buttons-container">
+            <button type="button" class="add-button" onclick="addInputBlock()">Add Location</button>
+            <button type="submit" class="submit-button">Submit</button>
+        </div>
+    </form>
+
+    
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 class="delete-heading">Remove Delivery Point</h2>
+            <input type="text" id="storeName" class="delete-input" placeholder="Store Name" required><br>
+            <input type="text" id="location" class="delete-input" placeholder="Location" required><br>
+            <button onclick="proceedDelete()" class="delete-button">Proceed</button>
+
+        </div>
+    </div>
+
+    <script>
+        let currentLocationCounter = 0;
+
+        function addInputBlock() {
+            if (locationCounter < 50) {
+                locationCounter++;
+                const inputContainer = document.getElementById('inputContainer');
+                const inputBlock = document.createElement('div');
+                inputBlock.classList.add('input-block');
+                inputBlock.innerHTML = `
+                    <h3>Location ${locationCounter}</h3>
+                    <input type="text" name="store_name_${locationCounter}" class="inp-items" placeholder="Store Name" required><br>
+                    <input type="text" name="mobile_number_${locationCounter}" class="inp-items" placeholder="Mobile Number" required><br>
+                    <input type="text" name="location_name_${locationCounter}" class="inp-items" placeholder="Location Name" required><br>
+                    <input type="text" name="latitude_${locationCounter}" class="inp-items" placeholder="Latitude" required><br>
+                    <input type="text" name="longitude_${locationCounter}" class="inp-items" placeholder="Longitude" required><br>
+                    <input type="text" name="priority_${locationCounter}" class="inp-items" placeholder="Priority (optional)">
+                    <button type="button" class="delete-button" onclick="openModal(${locationCounter})">Delete</button>
+                    <input type="hidden" name="location_index_${locationCounter}" value="${locationCounter}">
+                `;
+                inputContainer.appendChild(inputBlock);
+                inputContainer.scrollTo({
+                    left: inputContainer.scrollWidth,
+                    behavior: 'smooth'
+                });
+            } else {
+                alert('You have reached the maximum limit of locations.');
+            }
+        }
+
+        function openModal(locationCounter) {
+            currentLocationCounter = locationCounter;
+            const modal = document.getElementById('deleteModal');
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('deleteModal');
+            modal.style.display = 'none';
+        }
+
+        function proceedDelete() {
+            const storeName = document.getElementById('storeName').value;
+            const location = document.getElementById('location').value;
+            window.location.href = `/delete_location/${currentLocationCounter}?store_name=${storeName}&location=${location}`;
+        }
+    </script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Location</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='add_delivery_points.css') }}">
+</head>
+<body>
+    <div class="sticky-top">
+        <h1>Fleet Management&#x1F69A;</h1>
+        <nav>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('owner_page') }}">Find Route</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('view_delivery_points') }}">View Delivery Points</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('add_delivery_points') }}">Add Delivery Points</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('driver_dashboard') }}">Driver Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('history') }}">History</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('about_us') }}">About Us&#127758;</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <form id="locationForm" method="POST" action="/submit_locations">
+        <div class="input-container" id="inputContainer"></div>
+        <div class="buttons-container">
+            <button type="button" class="add-button" onclick="addInputBlock()">Add Location</button>
+            <button type="submit" class="submit-button">Submit</button>
+        </div>
+    </form>
+
+    <!-- Modal for input boxes -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 class="delete-heading">Remove Delivery Point</h2>
+            <input type="text" id="storeName" class="delete-input" placeholder="Store Name" required><br>
+            <input type="text" id="location" class="delete-input" placeholder="Location" required><br>
+            <button onclick="proceedDelete()" class="delete-button">Proceed</button>
+        </div>
+    </div>
+
+    <script>
+        let locationCounter = 0;
+        let currentLocationCounter = 0;
+
+        function addInputBlock() {
+            if (locationCounter < 50) {
+                locationCounter++;
+                const inputContainer = document.getElementById('inputContainer');
+                const inputBlock = document.createElement('div');
+                inputBlock.classList.add('input-block');
+                inputBlock.innerHTML = `
+                    <h3>Location ${locationCounter}</h3>
+                    <input type="text" name="store_name_${locationCounter}" class="inp-items" placeholder="Store Name" required><br>
+                    <input type="text" name="mobile_number_${locationCounter}" class="inp-items" placeholder="Mobile Number" required><br>
+                    <input type="text" name="location_name_${locationCounter}" class="inp-items" placeholder="Location Name" required><br>
+                    <input type="text" name="latitude_${locationCounter}" class="inp-items" placeholder="Latitude" required><br>
+                    <input type="text" name="longitude_${locationCounter}" class="inp-items" placeholder="Longitude" required><br>
+                    <input type="text" name="priority_${locationCounter}" class="inp-items" placeholder="Priority (optional)">
+                    
+                    <input type="hidden" name="location_index_${locationCounter}" value="${locationCounter}">
+                `;
+                inputContainer.appendChild(inputBlock);
+                inputContainer.scrollTo({
+                    left: inputContainer.scrollWidth,
+                    behavior: 'smooth'
+                });
+            } else {
+                alert('You have reached the maximum limit of locations.');
+            }
+        }
+
+        function openModal(locationCounter) {
+            currentLocationCounter = locationCounter;
+            const modal = document.getElementById('deleteModal');
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('deleteModal');
+            modal.style.display = 'none';
+        }
+
+        function proceedDelete() {
+            const storeName = document.getElementById('storeName').value;
+            const location = document.getElementById('location').value;
+            window.location.href = `/delete_location/${currentLocationCounter}?store_name=${storeName}&location=${location}`;
+        }
+    </script>
+</body>
+</html>
+

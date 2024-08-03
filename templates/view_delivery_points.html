@@ -1,0 +1,67 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Delivery Points</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='view_delivery_points.css') }}">
+</head>
+<body>
+    <div class="sticky-top">
+        <h1>Fleet Management&#x1F69A;</h1>
+        <nav>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('owner_page') }}">Find Route</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('view_delivery_points') }}">View Delivery Points</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('add_delivery_points') }}">Add Delivery Points</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('driver_dashboard') }}">Driver Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('history') }}">History</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('about_us') }}">About Us&#127758</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="container">
+        <h2>Delivery Points Details</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Store Name</th>
+                    <th>Mobile Number</th>
+                    <th>Location</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                    <th>Priority</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for point in delivery_points %}
+                <tr>
+                    <td>{{ point.store_name }}</td>
+                    <td>{{ point.mobile_number }}</td>
+                    <td>{{ point.location }}</td>
+                    <td>{{ point.latitude }}</td>
+                    <td>{{ point.longitude }}</td>
+                    <td>{{ point.priority }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

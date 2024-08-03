@@ -1,0 +1,162 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url("/static/abt1.jpg");
+    background-size: cover; 
+    background-position: center; 
+}
+
+/* Sticky top navigation bar */
+.sticky-top {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: navy;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.sticky-top h1 {
+    margin: 0;
+    color: white;
+    font-weight: bold;
+}
+
+.nav {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    margin-left: 20px;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.nav-link:hover {
+    color: gray;
+}
+
+/* Container for About Us content */
+.container {
+    margin: 40px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+}
+
+h2 {
+    text-align: center;
+    color: navy;
+    font-size: 35px;
+    margin-bottom: 20px;
+}
+
+.about-content {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333;
+    text-align: justify;
+}
+
+/* Logos section */
+.logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 30px;
+}
+
+.logos i {
+    color: navy;
+    transition: transform 0.3s ease;
+}
+
+.logos i:hover {
+    transform: scale(1.1);
+}
+
+/* Contact info section */
+.contact-info {
+    margin-top: 30px;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333;
+    text-align: center;
+}
+
+.contact-info p {
+    margin: 10px 0;
+}
+
+.contact-info a {
+    color: navy;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .sticky-top {
+        flex-direction: column;
+        height: auto;
+        padding: 15px;
+    }
+
+    .nav {
+        flex-direction: column;
+    }
+
+    .nav-item {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    .container {
+        margin: 20px;
+        padding: 15px;
+    }
+
+    .logos i {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .sticky-top {
+        padding: 10px;
+    }
+
+    .nav-link {
+        font-size: 16px;
+    }
+
+    .container {
+        margin: 15px;
+        padding: 10px;
+    }
+
+    .logos i {
+        font-size: 2rem;
+    }
+}
